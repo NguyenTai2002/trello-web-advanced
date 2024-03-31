@@ -10,12 +10,13 @@ import { API_ROOT } from '~/utils/constants'
  * (Và ở học phần MERN Stack Advance nâng cao học trực tiếp mình sẽ dạy cực kỳ đầy đủ cách xử lý, áp dụng phần này chuẩn chỉnh cho các bạn.)
  */
 
-/** Boards */
-export const fetchBoardDetailsAPI = async (boardId) => {
-  const response = await axios.get(`${API_ROOT}/v1/boards/${boardId}`)
-  // Lưu ý: axios sẽ trả kết quả về qua property của nó là data
-  return response.data
-}
+/** Boards */ 
+// Moved to redux
+// export const fetchBoardDetailsAPI = async (boardId) => {
+//   const response = await axios.get(`${API_ROOT}/v1/boards/${boardId}`)
+//   // Lưu ý: axios sẽ trả kết quả về qua property của nó là data
+//   return response.data
+// }
 
 export const updateBoardDetailsAPI = async (boardId, updateData) => {
   const response = await axios.put(`${API_ROOT}/v1/boards/${boardId}`, updateData)
