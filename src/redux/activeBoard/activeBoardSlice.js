@@ -12,7 +12,7 @@ const initialState = {
 // Các hành động gọi api thì dùng createAsyncThunk (middleware) cùng với extraReducers
 
 export const fetchBoardDetailsAPI = createAsyncThunk(
-  // name = sliceName + 
+  // name = sliceName +
   'activeBoard/fetchBoardDetailsAPI',
   async (boardId) => {
     const response = await axios.get(`${API_ROOT}/v1/boards/${boardId}`)
@@ -31,7 +31,6 @@ export const activeBoardSlice = createSlice({
       // action.payload là chuẩn đặt tên nhận dữ liệu vào reducer, ở đây được gán vào biến fullBoard
       const fullBoard = action.payload
       // update lại dữ liệu của currentActiveBoard
-
       state.currentActiveBoard = fullBoard
     }
   },
