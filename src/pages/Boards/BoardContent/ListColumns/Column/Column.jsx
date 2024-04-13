@@ -241,7 +241,10 @@ function Column({ column }) {
               alignItems: 'center',
               justifyContent: 'space-between'
             }}>
-              <Button startIcon={<AddCardIcon />} onClick={toggleOpenNewCardForm}>Add new card</Button>
+              <Button
+                className='interceptor-loading'
+                startIcon={<AddCardIcon />}
+                onClick={toggleOpenNewCardForm}>Add new card</Button>
               <Tooltip title="Drag to move">
                 <DragHandleIcon sx={{ cursor: 'pointer' }} />
               </Tooltip>
@@ -280,6 +283,7 @@ function Column({ column }) {
               />
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <Button
+                  className='interceptor-loading'
                   onClick={addNewCard}
                   variant="contained" color="success" size="small"
                   sx={{
