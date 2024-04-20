@@ -1,5 +1,5 @@
 // TrungQuanDev: https://youtube.com/@trungquandev
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams, useNavigate } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Avatar from '@mui/material/Avatar'
@@ -11,7 +11,8 @@ import CardActions from '@mui/material/CardActions'
 import TextField from '@mui/material/TextField'
 import Zoom from '@mui/material/Zoom'
 import { useForm } from 'react-hook-form'
-import {Alert} from '@mui/material'
+import { Alert } from '@mui/material'
+
 import {
   EMAIL_RULE,
   PASSWORD_RULE,
@@ -20,15 +21,29 @@ import {
   EMAIL_RULE_MESSAGE
 } from '~/utils/validators'
 import FieldErrorAlert from '~/components/Form/FieldErrorAlert'
+import { useDispatch } from 'react-redux'
+import { loginUserAPI } from '~/redux/user/userSlice'
+import { toast } from 'react-toastify'
 
 function LoginForm() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const { register, handleSubmit, formState: {errors} } = useForm()
   let [searchParams] = useSearchParams()
   const registeredEmail = searchParams.get('registeredEmail')
   const verifiedEmail = searchParams.get('verifiedEmail')
+
   const submitLogIn = (data) => {
-    console.log(data);
+    const { email, password } = data
+    toast.promise(
+      dispatch(loginUserAPI({ email, password })),
+      { pending: 'Logging is in progress...' }
+    ).then(res => {
+      console.log(res)
+      // Đoạn này phải kiểm tra không có lỗi thì mới redirect về route /
+      if(!res.error) navigate('/')
+    })
   }
 
   return (
