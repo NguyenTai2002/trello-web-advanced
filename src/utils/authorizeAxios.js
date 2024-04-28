@@ -47,12 +47,6 @@ authorizedAxiosInstance.interceptors.request.use((config) => {
 let refreshTokenPromise = null
 
 
-
-
-
-
-
-
 // interceptor response can thiệp vào giữa những cái response API
 
 authorizedAxiosInstance.interceptors.response.use((response) => {
