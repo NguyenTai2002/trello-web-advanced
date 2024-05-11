@@ -23,8 +23,9 @@ import { CSS } from '@dnd-kit/utilities'
 import TextField from '@mui/material/TextField'
 import CloseIcon from '@mui/icons-material/Close'
 import { useConfirm } from 'material-ui-confirm'
+import ToggleFocusInput from '~/components/Form/ToggleFocusInput'
 
-import { createNewCardAPI, deleteColumnDetailsAPI } from '~/apis'
+import { createNewCardAPI, deleteColumnDetailsAPI, updateColumnDetailsAPI } from '~/apis'
 import { useSelector, useDispatch } from 'react-redux'
 import { cloneDeep } from 'lodash'
 import { selectCurrentActiveBoard, updateCurrentActiveBoard } from '~/redux/activeBoard/activeBoardSlice'
@@ -130,6 +131,20 @@ function Column({ column }) {
     }).catch(() => {})
   }
 
+  const onUpdateColumnTitle = (newTitle) => {
+    console.log('title', newTitle)
+
+    // Call API to update title column
+    updateColumnDetailsAPI(column._id, { title: newTitle }).then(() => {
+      const newBoard =cloneDeep(board)
+      const columnToUpdate = newBoard.columns.find(c => column._id === c._id)
+      if (columnToUpdate) {
+        columnToUpdate.title = newTitle
+      }
+      dispatch(updateCurrentActiveBoard(newBoard))
+    })
+  }
+
   // Phải bọc div ở đây vì vấn đề chiều cao của column khi kéo thả sẽ có bug kiểu kiểu flickering (video 32)
   return (
     <div ref={setNodeRef} style={dndKitColumnStyles} {...attributes}>
@@ -153,13 +168,18 @@ function Column({ column }) {
           alignItems: 'center',
           justifyContent: 'space-between'
         }}>
-          <Typography variant="h6" sx={{
+          {/* <Typography variant="h6" sx={{
             fontSize: '1rem',
             fontWeight: 'bold',
             cursor: 'pointer'
           }}>
             {column?.title}
-          </Typography>
+          </Typography> */}
+          <ToggleFocusInput
+            value={column?.title}
+            onChangedValue={onUpdateColumnTitle}
+            data-no-dnd="true"
+          />
           <Box>
             <Tooltip title="More options">
               <ExpandMoreIcon
