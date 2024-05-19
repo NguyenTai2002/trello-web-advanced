@@ -12,7 +12,7 @@ import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
 import { useDispatch } from 'react-redux'
-import { updateCurrentActiveCard } from '~/redux/activeCard/activeCardSlice'
+import { showModalActiveCard, updateCurrentActiveCard } from '~/redux/activeCard/activeCardSlice'
 
 
 function Card({ card }) {
@@ -39,6 +39,8 @@ function Card({ card }) {
   const setActiveCard = () => {
     // Update data for activeCard trong Redux
     dispatch(updateCurrentActiveCard(card))
+    // Hien modal ActiveCard len
+    dispatch(showModalActiveCard())
   }
 
   return (
