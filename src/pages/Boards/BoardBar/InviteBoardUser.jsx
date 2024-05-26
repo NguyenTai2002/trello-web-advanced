@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form'
 import { EMAIL_RULE, FIELD_REQUIRED_MESSAGE, EMAIL_RULE_MESSAGE } from '~/utils/validators'
 import FieldErrorAlert from '~/components/Form/FieldErrorAlert'
 import { inviteUserToBoardAPI } from '~/apis'
+import { socketIoInstance } from '~/main'
 
 function InviteBoardUser( { boardId }) {
   /**
@@ -29,12 +30,13 @@ function InviteBoardUser( { boardId }) {
     const { inviteeEmail } = data
     // console.log('inviteeEmail:', inviteeEmail)
     // Goi API moi mot nguoi nao do vao lam thanh vien cua Board
-    inviteUserToBoardAPI({ inviteeEmail, boardId }).then(() => {
+    inviteUserToBoardAPI({ inviteeEmail, boardId }).then((invitation) => {
       // Clear thẻ input sử dụng react-hook-form bằng setValue, dong thoi dong popover
       setValue('inviteeEmail', null)
       setAnchorPopoverElement(null)
       // Mời một người dùng vào board xong thì cũng sẽ gửi/emit sự kiện socket lên server (tính năng real-time)
-      // ...
+
+      socketIoInstance.emit('FE_USER_INVITED_TO_BOARD', invitation)
     })
   }
 
