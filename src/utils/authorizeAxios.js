@@ -69,7 +69,6 @@ authorizedAxiosInstance.interceptors.response.use((response) => {
     axiosReduxStore.dispatch(logoutUserAPI(false))
   }
 
-
   // Trường hợp 2: Nếu như nhận mã 410 từ BE, thì sẽ gọi api refresh token để làm mới lại accessToken
   // Đầu tiên lấy được các request API đang bị lỗi thông qua error.config
 
@@ -89,7 +88,6 @@ authorizedAxiosInstance.interceptors.response.use((response) => {
         })
         .finally(() => {
           // Dù API có ok hay lỗi thì vẫn luôn gán lại cái refreshTokenPromise về null như ban đầu
-
           refreshTokenPromise = null
         })
     }
@@ -100,8 +98,6 @@ authorizedAxiosInstance.interceptors.response.use((response) => {
       * Bước 1: Đối với Trường hợp nếu dự án cần lưu accessToken vào localstorage hoặc đâu đó thì sẽ viết thêm code xử lý ở đây.
       * Hiện tại ở đây không cần bước 1 này vì chúng ta đã đưa accessToken vào cookie (xử lý từ phía BE) sau khi api refreshToken được gọi thành công.
       */
-
-
       // Bước 2: Bước Quan trọng: Return lại axios instance của chúng ta kết hợp các originalRequests để gọi lại những api ban đầu bị lỗi
       return authorizedAxiosInstance(originalRequests)
     })

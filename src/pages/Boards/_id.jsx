@@ -89,7 +89,7 @@ function Board() {
 
     moveCardToDifferentColumnAPI({
       currentCardId,
-      prevColumnId,
+       prevColumnId,
       prevCardOrderIds,
       nextColumnId,
       nextCardOrderIds: dndOrderedColumns.find(c => c._id === nextColumnId)?.cardOrderIds

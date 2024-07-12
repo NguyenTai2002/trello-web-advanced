@@ -45,7 +45,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <GlobalStyles styles={{ a: { textDecoration: 'none' } }}/>
             <CssBaseline />
             <App />
-            <ToastContainer position="bottom-left" theme="colored" />
+            <ToastContainer position="bottom-left" theme="colored"/>
           </ConfirmProvider>
         </CssVarsProvider>
       </BrowserRouter>
