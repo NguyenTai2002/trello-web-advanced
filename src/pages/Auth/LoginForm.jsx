@@ -29,7 +29,7 @@ function LoginForm() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { register, handleSubmit, formState: {errors} } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm()
   let [searchParams] = useSearchParams()
   const registeredEmail = searchParams.get('registeredEmail')
   const verifiedEmail = searchParams.get('verifiedEmail')
@@ -38,11 +38,10 @@ function LoginForm() {
     const { email, password } = data
     toast.promise(
       dispatch(loginUserAPI({ email, password })),
-      { pending: 'Logging is in progress...' }
+      { pending: 'Logging is in progress...'}
     ).then(res => {
-      console.log(res)
       // Đoạn này phải kiểm tra không có lỗi thì mới redirect về route /
-      if(!res.error) navigate('/')
+      if (!res.error) navigate('/')
     })
   }
 

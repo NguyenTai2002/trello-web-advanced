@@ -122,7 +122,7 @@ function ActiveCard() {
 
   const onUpdateCardMembers = (incomingMemberInfo) => {
     callApiUpdateCard({ incomingMemberInfo })
-  }
+  } 
 
   const currentUser = useSelector(selectCurrentUser)
 

@@ -117,7 +117,7 @@ function AccountTab() {
                 size="small"
                 startIcon={<CloudUploadIcon />}>
                 Upload
-                <VisuallyHiddenInput type="file" onChange={uploadAvatar} />
+                <VisuallyHiddenInput type="file" onChange={uploadAvatar}/>
               </Button>
             </Tooltip>
           </Box>
