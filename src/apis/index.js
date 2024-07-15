@@ -10,7 +10,7 @@ import { toast } from 'react-toastify'
  * (Và ở học phần MERN Stack Advance nâng cao học trực tiếp mình sẽ dạy cực kỳ đầy đủ cách xử lý, áp dụng phần này chuẩn chỉnh cho các bạn.)
  */
 
-/** Boards */ 
+/** Boards */
 // Moved to redux
 // export const fetchBoardDetailsAPI = async (boardId) => {
 //   const response = await axios.get(`${API_ROOT}/v1/boards/${boardId}`)
